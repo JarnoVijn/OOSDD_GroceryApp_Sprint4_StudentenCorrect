@@ -1,8 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Grocery.Core.Interfaces.Repositories;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
-using System.Collections.ObjectModel;
 
 namespace Grocery.App.ViewModels
 {
@@ -10,6 +11,7 @@ namespace Grocery.App.ViewModels
     {
         public ObservableCollection<GroceryList> GroceryLists { get; set; }
         private readonly IGroceryListService _groceryListService;
+        private readonly IClientRepository _clientRepository;
 
         public GroceryListViewModel(IGroceryListService groceryListService) 
         {
@@ -23,6 +25,13 @@ namespace Grocery.App.ViewModels
         {
             Dictionary<string, object> paramater = new() { { nameof(GroceryList), groceryList } };
             await Shell.Current.GoToAsync($"{nameof(Views.GroceryListItemsView)}?Titel={groceryList.Name}", true, paramater);
+        }
+        [RelayCommand]
+        public void ShowBoughtProducts()
+        {
+            
+            Shell.Current.GoToAsync(nameof(Views.BoughtProductsView)); 
+            
         }
         public override void OnAppearing()
         {
