@@ -8,7 +8,7 @@
              Title="GroceryListsView">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Text="Henk" 
+            Text="A.J. Kwak" 
             Command="{Binding ShowBoughtProductsCommand}" />
     </ContentPage.ToolbarItems>
     <Shell.TitleView>
